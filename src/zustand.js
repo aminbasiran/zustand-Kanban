@@ -3,10 +3,10 @@ import {create} from "zustand";
 const store = (set) => ({
     tasks : [],
     draggedItem : { title: null, tags: [] },
-    addTask : (title,state,tags) => set(store=>({tasks:[...store.tasks,{title,state,tags}]})),
+    addTask : (title,state,tags,criticality) => set(store=>({tasks:[...store.tasks,{title,state,tags,criticality}]})),
     deleteTask :(title) => set(store=> ({tasks: store.tasks.filter(task => task.title !== title)})),
-    setDraggedItem : (title,tags) => set(store => ({draggedItem: {title,tags}})),
-    moveTask : (title,state,tags) => set(store => ({tasks: store.tasks.map(task => (task.title === title ? {title,state,tags: tags || []} : task))})),
+    setDraggedItem : (title,tags,criticality) => set(store => ({draggedItem: {title,tags,criticality}})),
+    moveTask : (title,state,tags,criticality) => set(store => ({tasks: store.tasks.map(task => (task.title === title ? {title,state,tags: tags || [],criticality} : task))})),
     deleteTags : (title,tagToRemove) => set(store => ({tasks:store.tasks.map(task => {
         if(task.title === title){
             return {...task,tags:task.tags.filter(tag => tag !== tagToRemove)}

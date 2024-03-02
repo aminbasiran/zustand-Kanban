@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useStore } from '../zustand';
 import Tags from './Tags';
 
-const Task = ({title,state,tags}) => {
+const Task = ({title,state,tags,criticality}) => {
 
 
   const deleteTask = useStore(store => store.deleteTask)
@@ -17,9 +17,16 @@ const Task = ({title,state,tags}) => {
     { 'bg-green-400': state === "Done"}
   );
 
+  const criticalClasses = clsx(
+    'cursor-move bg-[#1e1f24] rounded-r-md text-left py-2 pl-4 pr-2 flex flex-col justify-between border-l-4 ',
+    { 'border-red-500': criticality === "High"},
+    { 'border-orange-600': criticality === "Medium"},
+    { 'border-green-300': criticality === "Low"}
+);
+
   
   return (
-    <div draggable onDragStart={()=> setDraggedItem(title,tags)} className='cursor-move bg-[#1e1f24]  rounded-md text-left p-2 flex flex-col justify-between'>
+    <div draggable onDragStart={()=> setDraggedItem(title,tags,criticality)} className={criticalClasses}>
       <h1>{title}</h1>
       <Tags title={title} tags={tags}/>
       <div className='flex justify-between'> 
