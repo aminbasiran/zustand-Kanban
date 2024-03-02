@@ -42,7 +42,7 @@ const Column = ({state}) => {
         <div onDragOver={(e)=>e.preventDefault()} onDrop={()=> {moveTask(draggedItem.title,state,draggedItem.tags,draggedItem.criticality),
                                                                 setDraggedItem(null)   
                                                             }} 
-        className={`flex-grow ${tasks.length === 0 ? "border-4 border-dashed border-neutral-400/30" : "rounded-lg bg-zinc-900" }  min-h-64 p-3`}>
+        className={`flex-grow ${tasks.length === 0 ? "border-4 border-dashed border-neutral-400/30" : "rounded-lg bg-zinc-900" }   p-3`}>
             <div className='flex flex-row mb-2 justify-between'>
                 <div className='flex gap-2 place-items-center'>
                     <h1>{state}</h1>
@@ -52,14 +52,14 @@ const Column = ({state}) => {
 
             </div>
             <div className='flex flex-col gap-4 '>
-                {tasks.length === 0 ? <DropItem/> : tasks.map(task => <Task key={task.title}  title={task.title} state={task.state} tags={task.tags} criticality={task.criticality}/>)}
+                {tasks.length === 0 ? <DropItem setOpen={setOpen} open={open} /> : tasks.map(task => <Task key={task.title}  title={task.title} state={task.state} tags={task.tags} criticality={task.criticality}/>)}
             </div>
             {open && <div  onClick={()=>setOpen(!open)} className='absolute top-0 left-0 w-full h-full bg-gray-800/30'>
                     
                     <div className='grid place-items-center h-full'> 
                     
                         <div onClick={(e) => e.stopPropagation()} className='flex flex-col gap-2 bg-[#242424] p-4 rounded-lg'>
-                            <input  className='rounded-md px-2 py-1 text-xs' type="text" placeholder='Add task' value={text}  onChange={(e)=> setText(e.target.value)}/>
+                            <input  className='border-zinc-700 border-[1px] rounded-md px-2 py-1 text-xs bg-transparent' type="text" placeholder='Add task' value={text}  onChange={(e)=> setText(e.target.value)}/>
                             <div className='border-[1px] border-zinc-700 rounded-md flex'>
                                 <ul className='flex flex-row p-2 text-xs gap-3'>
                                     {tags.map((tag,index)=> 
@@ -71,9 +71,9 @@ const Column = ({state}) => {
                                 </ul>
                                 <input type="text" placeholder='Press enter to add tags' className='focus:outline-none text-xs p-2 bg-transparent ' onKeyUp={addTags} />
                             </div>
-                            <div>
-                                <select value={criticality} onChange={handleCriticality}>
-                                    <option value="">Select criticality</option>
+                            <div >
+                                <select className='p-2 text-xs border-[1px] appearance-none  border-zinc-700 rounded-md bg-transparent' value={criticality} onChange={handleCriticality}>
+                                    <option className="text-red" value="">Select criticality</option>
                                     <option value="High">High</option>
                                     <option value="Medium">Medium</option>
                                     <option value="Low">Low</option>

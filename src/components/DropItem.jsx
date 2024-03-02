@@ -1,10 +1,10 @@
 import React from 'react'
 
-const DropItem = () => {
+const DropItem = ({open, setOpen}) => {
   return (
-    <div>
+    <div >
         <h2 className='text-zinc-600 text-lg mb-3 '>Empty list</h2>
-        <div className='border-dashed border-2 border-zinc-700 py-10 rounded-md'>
+        <div  onClick={()=>setOpen(!open)} className='border-dashed border-2 cursor-pointer border-zinc-700 py-10 rounded-md'>
             <h1 className='text-zinc-600'>Drop item here</h1>
         </div>
     </div>
