@@ -17,7 +17,7 @@ const Column = ({state}) => {
         <div onDragOver={(e)=>e.preventDefault()} onDrop={()=> {setDraggedTask(null)
                                                                 moveTask(draggedTask,state)
                                                                 console.log(draggedTask)}} 
-        className='w-1/3 bg-zinc-800 min-h-64 p-3'>
+        className='flex-grow bg-zinc-800 min-h-64 p-3'>
             <div className='flex flex-row mb-2 justify-between'>
                 <h1>{state}</h1>
                 <button className="cursor-pointer" onClick={()=>setOpen(!open)} >+ Add</button>
