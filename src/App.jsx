@@ -8,12 +8,11 @@ function App() {
     <div>
 
       <h1 className='text-3xl font-bold mb-4'  > Zustand Kanban App Tracker</h1>
-      <div className='flex flex-col gap-5 justify-center md:flex-row '>
+      <div className='flex flex-col flex-wrap gap-5 justify-center md:flex-row '>
         <Column state="Planned"/>
-        <Column state="Ongoing"/>
+        <Column state="In-progress"/>
+        <Column state="Review"/>
         <Column state="Done"/>
-
-
       </div>
     </div>
   )
